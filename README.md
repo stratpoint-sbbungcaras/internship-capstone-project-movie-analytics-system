@@ -1,4 +1,4 @@
-<h3 align="center">Project Title</h3>
+<h3 align="center">Internship Movie Analytics System</h3>
 
 <p align="center"> The pipeline output implements an Extract, Transform, Load (ETL) pipeline that was orchestrated with Apache Airflow, from extraction to data sources (TMDb API), data cleaning, transforming and loading to PostgreSQL database with a star schema model (Fact, Dim, Bridges), and lastly, interactive dashboard made with Power BI.
     <br> 
