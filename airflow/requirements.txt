@@ -1,0 +1,6 @@
+pandas
+pyspark
+requests
+numpy
+python-dotenv
+tabulate

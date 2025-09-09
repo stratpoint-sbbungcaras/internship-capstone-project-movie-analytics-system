@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-capstone
+    environment:
+      POSTGRES_USER: capstone                # username
+      POSTGRES_PASSWORD: capstone            # password
+      POSTGRES_DB: capstone                  # db name
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+
+  airflow-webserver:
+    build: ./airflow
+    container_name: airflow-webserver-capstone
+    depends_on:
+      - postgres
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://capstone:capstone@postgres:5432/capstone
+      - AIRFLOW__LOGGING__REMOTE_LOGGING=False
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/datasets:/opt/airflow/datasets
+      - ./airflow/outputs:/opt/airflow/outputs
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/jars:/opt/airflow/jars
+    ports:
+      - "8081:8080"
+    command: webserver
+
+  airflow-scheduler:
+    build: ./airflow
+    container_name: airflow-scheduler-capstone
+    depends_on:
+      - airflow-webserver
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://capstone:capstone@postgres:5432/capstone
+      - AIRFLOW__LOGGING__REMOTE_LOGGING=False
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/datasets:/opt/airflow/datasets
+      - ./airflow/outputs:/opt/airflow/outputs
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/jars:/opt/airflow/jars
+    command: scheduler
+
+volumes:
+  postgres_data:
