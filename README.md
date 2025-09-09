@@ -35,7 +35,7 @@
   - Data Source: The Movie Database (TMDB) API
 
 ## Project Structure <a name = "structure"></a>
-
+```
 internship-capstone-project-movie-analytics-system/
 │
 ├── airflow/                         
@@ -77,8 +77,7 @@ internship-capstone-project-movie-analytics-system/
 |
 ├── docker-compose.yml               # Docker services setup
 └── README.md                        # Project documentation
-
-
+```
 ## Project Architecture <a name = "architecture"></a>
 The project follows a modern data engineering approach, using specialized tools for each stage of the process:
 
