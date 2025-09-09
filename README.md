@@ -24,11 +24,75 @@
 
 ## Core Technologies <a name = "core"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+  - Orchestration: Apache Airflow
+
+  - Data Storage: PostgreSQL
+
+  - Data Cleaning/Transformation: Pandas, PySpark
+
+  - Programming Languages: Python, SQL
+
+  - Data Source: The Movie Database (TMDB) API
 
 ## Project Structure <a name = "structure"></a>
 
+internship-capstone-project-movie-analytics-system/
+│
+├── airflow/                         
+│   ├── dags/                        # DAGs, SQL scripts, and utilities (functions/tasks)
+│   │   ├── sql/                     # SQL scripts for analysis & modeling
+│   │   │   ├── analysis1.sql
+│   │   │   ├── analysis2.sql
+│   │   │   ├── analysis3.sql
+│   │   │   ├── analysis4.sql
+│   │   │   └── modeling.sql
+│   │   ├── utils/                   # Tasks scripts for ETL pipeline
+│   │   │   ├── config.py            # Configuration settings
+│   │   │   ├── cleaner.py           # Data cleaning logic (Pandas)
+│   │   │   ├── enricher.py          # Data enrichment logic (Pandas)
+│   │   │   ├── transform_load.py    # Transform & load functions (PySpark)
+│   │   │   └── __init__.py
+│   │   ├── capstone_pipeline_dag.py # Main Airflow pipeline DAG
+│   │   └── .env                     # TMDB API KEY
+│   │
+│   ├── datasets/                    # Raw Datasets
+│   │   ├── movies_main.csv
+│   │   ├── movies_extended.csv
+│   │   └── ratings.json
+│   │
+│   ├── jars/                        # External dependencies
+│   │   └── postgresql-42.7.3.jar    # PostgreSQL JDBC driver
+│   │
+│   ├── logs/                        # Airflow logs
+│   ├── outputs/                     # Cleaned, enriched and logs for tasks
+│   |   ├── cleaned_master_data.csv
+│   |   ├── enriched_master_data.csv
+│   |   ├── enriched_master_data_partial.csv
+│   |   ├── movie_cleaner.log
+│   |   ├── movie_enrichment.log
+│   |   └── movie_enrichment_progress.json
+|   |
+│   ├── requirements.txt              # Python dependencies (pip install)
+│   └── Dockerfile                    # Container build instructions 
+|
+├── docker-compose.yml               # Docker services setup
+└── README.md                        # Project documentation
+
+
 ## Project Architecture <a name = "architecture"></a>
+The project follows a modern data engineering approach, using specialized tools for each stage of the process:
+
+  1.  Extraction & Enrichment: A Python script (enricher.py) fetches movie data using the TMDB API and merges it with local datasets.
+
+  2. Cleaning: A robust Python script (cleaner.py) standardizes the data. Its most critical function is to consolidate variations of production company names (e.g., mapping "20th Century Fox" and "Fox 2000 Pictures" to "Walt Disney Pictures") to ensure accurate analysis.
+
+  3. Modeling: A SQL script (modeling.sql) runs first to define the data warehouse structure in PostgreSQL, creating a star schema with a central fact table and multiple dimension tables.
+
+  4. Transformation & Loading: A PySpark script (transform_load.py) processes the cleaned data, creating the final dataframes for the fact and dimension tables and loading them into the PostgreSQL database.
+
+  5. Analysis: A series of SQL scripts (analysis1.sql - analysis4.sql) are executed to create powerful, pre-aggregated views in the database. These views are designed to answer key business questions and handle complex logic, such as fairly distributing profit for co-produced movies.
+
+  6. Orchestration: The entire process is managed by an Airflow DAG (capstone_pipeline_dag.py), which defines the sequence of tasks and their dependencies.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
