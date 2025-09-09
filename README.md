@@ -88,8 +88,6 @@ The project follows a modern data engineering approach, using specialized tools 
 
   6. Orchestration: The entire process is managed by an Airflow DAG (capstone_pipeline_dag.py), which defines the sequence of tasks and their dependencies.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
 ## Setup & Installation <a name = "setup"></a>
   
   Follow these steps to set up the project environment.
