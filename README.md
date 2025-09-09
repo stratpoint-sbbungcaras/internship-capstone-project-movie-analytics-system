@@ -1,15 +1,10 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p>
-
 <h3 align="center">Project Title</h3>
 
 <p align="center"> The pipeline output implements an Extract, Transform, Load (ETL) pipeline that was orchestrated with Apache Airflow, from extraction to data sources (TMDb API), data cleaning, transforming and loading to PostgreSQL database with a star schema model (Fact, Dim, Bridges), and lastly, interactive dashboard made with Power BI.
     <br> 
 </p>
 
-## 📝 Table of Contents
+## Table of Contents
 
 - [Core Technologies](#core)
 - [Project Structure](#structure)
@@ -36,7 +31,7 @@
 
 ## Project Structure <a name = "structure"></a>
 ```
-internship-capstone-project-movie-analytics-system/
+repo-folder/
 │
 ├── airflow/                         
 │   ├── dags/                        # DAGs, SQL scripts, and utilities (functions/tasks)
@@ -110,7 +105,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Instructions:
   1. Clone or Fork the Repository:
       ```
-      git clone https://github.com/stratpoint-sbbungcaras/internship-capstone-project-movie-analytics-system.git
+      git clone <git repo>
       cd <your-repo-name>
       ```
   2. Environment Variable:
