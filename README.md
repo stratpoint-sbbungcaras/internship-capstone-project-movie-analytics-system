@@ -212,7 +212,7 @@ The pipeline is defined in capstone_pipeline_dag.py and consists of the followin
 
 - [GitHub](https://github.com/stratpoint-sbbungcaras) 
 
-- [@LinkedIn](https://www.linkedin.com/in/shamley-bungcaras-4328b4377/) 
+- [LinkedIn](https://www.linkedin.com/in/shamley-bungcaras-4328b4377/) 
 
 ## Acknowledgements <a name = "acknowledgement"></a>
    
